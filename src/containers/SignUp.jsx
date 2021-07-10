@@ -1,50 +1,53 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import NavBar from '../components/NavBar'
+import Footer from '../components/Footer'
+import { Container ,Form, Button } from 'react-bootstrap'
 import { useState } from 'react';
-// import { signupUser } from '../store/action';
-// import { useDispatch } from 'react-redux'
+import { signupUser } from '../store/actions';
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom';
+
 
 function SignUp() {
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const signup_user = () => {
-        // let user = {
-        //     username,
-        //     email,
-        //     password
-        // }
-        // dispatch(signupUser(user))
+        let user = {
+            username,
+            email,
+            password
+        }
+        dispatch(signupUser(user,history))
     }
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-12">
-                    <div className="card login_card">
-                        <h1>Signup</h1>
-                        <div className="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Username</label>
-                            <input onChange={(e) => setUsername(e.target.value)} value={username} type="text" className="form-control" id="exampleFormControlInput1" placeholder="username" />
-                        </div>
-                        <div className="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                            <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
-                        </div>
-                        <div className="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Password</label>
-                            <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
-                        </div>
-                        <div class="d-grid gap-2">
-                            <button onClick={signup_user} class="btn btn-primary" type="button">Signup</button>
-                        </div>
-                        <div>
-                            <Link to="/">Login</Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div>
+            <NavBar />
+            <Container className="text-center border p-3 my-5">
+                <h2 className="text-white bg-success p-3">SIGN UP</h2>
+                <br />
+                <Form>
+                <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Label>FULL NAME</Form.Label>
+                        <Form.Control onChange={(e) => setUsername(e.target.value)} value={username} type="text" className="text-center" placeholder="Please Enter Your Email Address" />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>EMAIL ADDRESS</Form.Label>
+                        <Form.Control type="email"  onChange={(e) => setEmail(e.target.value)} value={email} className="text-center" placeholder="Please Enter Your Email Address" />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>PASSWORD</Form.Label>
+                        <Form.Control type="password" onChange={(e) => setPassword(e.target.value)} value={password} className="text-center" placeholder="Please Enter Your Password" />
+                    </Form.Group>
+                    <Button onClick={signup_user} variant="success" type="button">
+                        SIGN UP
+                    </Button>
+                </Form>
+            </Container>
+            <Footer />
         </div>
     )
 }

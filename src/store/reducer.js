@@ -4,20 +4,15 @@ const INITIAL_STATE = {
 
 const reducer = (state = INITIAL_STATE,action) => {
     switch(action.type){
-        case "DataType":
-            return({
-                ...state,
-                data:action.data
-            })
         case "GETUSER":
             return ({
                 ...state,
                 user: action.user
             })
-        case "GETALLUSERS":
+        case "GETALLHOTELS":
             return ({
                 ...state,
-                allUsers: action.allUsers
+                allHotels: action.allHotels
             })
         default:
             return state

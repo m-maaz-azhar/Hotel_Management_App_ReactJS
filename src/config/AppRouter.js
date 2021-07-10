@@ -7,9 +7,9 @@ function AppRouter() {
     return (
         <Router>
             <Switch>
-                <Route exact path="/" component={Login} />
+                <Route exact path="/" component={Home} />
                 <Route exact path="/signup" component={SignUp} />
-                <Route exact path="/home" component={Home} />
+                <Route exact path="/login" component={Login} />
             </Switch>
         </Router>
     )
